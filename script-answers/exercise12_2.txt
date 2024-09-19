@@ -1,0 +1,46 @@
+Script started on 2024-09-19 17:17:45+03:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="226" LINES="13"]
+[?2004h]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ touch [7mscript-answers/exercise12_2.txt[27mscript-answers/exercise12_2.txt
+[?2004l[?2004h]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ [7mscript-answers/exercise12_2.txt[27mscript-answers/exercise12_2.txt
+[?2004lbash: script-answers/exercise12_2.txt: Permission denied
+[?2004h]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ docker[K[K[K[K[K[Kclear
+[?2004l[H[2J[3J[?2004h]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ docker run [K[K[K[Kcontinat[K[K[K[Kainter[K[K[Ker run helol[K[Klo-world
+[?2004ldocker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Head "http://%2Fvar%2Frun%2Fdocker.sock/_ping": dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+[?2004h]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ docker container run hello-world[1@s[1@u[C[1@d[1@o[1@ 
+[?2004l[sudo] password for wukong: 
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+[?2004h]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ [K]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ [K]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ [K]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ [K]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ [K]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ [K]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ [K]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ [K]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ sudo run[K[K[Kdocker contatiner[K[K[K[K[Kiner run it[K[K-it d[K[K ubuntu bash
+[?2004lUnable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+
+[1A[2Kdafa2b0c44d2: Pulling fs layer [1B[1A[2Kdafa2b0c44d2: Downloading [>                                                  ]  310.6kB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [===>                                               ]  1.858MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [======>                                            ]  3.705MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [========>                                          ]  5.245MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [===========>                                       ]  7.092MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [==============>                                    ]  8.645MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [=================>                                 ]   10.5MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [====================>                              ]  12.35MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [=======================>                           ]  14.22MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [===========================>                       ]  16.07MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [==============================>                    ]  17.93MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [================================>                  ]  19.48MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [===================================>               ]  21.31MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [======================================>            ]  22.87MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [=========================================>         ]  24.42MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [===========================================>       ]  25.96MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [==============================================>    ]  27.51MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Downloading [================================================>  ]  29.06MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Verifying Checksum [1B[1A[2Kdafa2b0c44d2: Download complete [1B[1A[2Kdafa2b0c44d2: Extracting [>                                                  ]  327.7kB/29.75MB[1B[1A[2Kdafa2b0c44d2: Extracting [====>                                              ]  2.949MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Extracting [==========>                                        ]  6.226MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Extracting [==============>                                    ]  8.847MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Extracting [====================>                              ]  12.12MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Extracting [============================>                      ]  17.04MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Extracting [====================================>              ]  21.95MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Extracting [==========================================>        ]  25.56MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Extracting [==============================================>    ]  27.85MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Extracting [=================================================> ]  29.49MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Extracting [==================================================>]  29.75MB/29.75MB[1B[1A[2Kdafa2b0c44d2: Pull complete [1BDigest: sha256:dfc10878be8d8fc9c61cbff33166cb1d1fe44391539243703c72766894fa834a
+Status: Downloaded newer image for ubuntu:latest
+[?2004h]0;root@97e1049333fa: /root@97e1049333fa:/# mkdir [7m/usr/src/app[27m/usr/src/app
+[?2004l[?2004h]0;root@97e1049333fa: /root@97e1049333fa:/# touch [7m/usr/src/app/index.js[27m/usr/src/app/index.jss
+[?2004l[?2004h]0;root@97e1049333fa: /root@97e1049333fa:/# [Kexit
+[?2004lexit
+[?2004h]0;wukong@wukong-TM1607: ~/fullstack/part12[01;32mwukong@wukong-TM1607[00m:[01;34m~/fullstack/part12[00m$ [?2004l
+exit
+
+Script done on 2024-09-19 17:28:21+03:00 [COMMAND_EXIT_CODE="0"]
