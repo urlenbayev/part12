@@ -35,12 +35,24 @@ singleRouter.delete('/', async (req, res) => {
 
 /* GET todo. */
 singleRouter.get('/', async (req, res) => {
-  res.sendStatus(405); // Implement this
+  res.send(req.todo);
 });
 
 /* PUT todo. */
 singleRouter.put('/', async (req, res) => {
-  res.sendStatus(405); // Implement this
+  const { text, done } = req.body;
+  const todo = req.todo;
+
+  if (text === undefined || done === undefined) {
+    return res.status(400).json({error: 'Text and done are required!'})
+  }
+
+  todo.text = text
+  todo.done = done
+
+  await todo.save();
+  
+  res.send(todo);
 });
 
 router.use('/:id', findByIdMiddleware, singleRouter)
