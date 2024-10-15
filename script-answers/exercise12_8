@@ -1,0 +1,234 @@
+Script started on 2024-10-15 23:58:57+02:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="198" LINES="27"]
+[?2004h]0;donfring@Home: ~/fullstack/part12[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12[00m$ docker compose -f dock[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcd todo-app/
+[?2004l[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app[00m$ cd todo-backend/
+[?2004l[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker compos e-[K[K[Ke =f [K[K[K-f docker-compose.dev.yml -d[K[Kup -d
+[?2004l[33mWARN[0m[0000] Found orphan containers ([todo-backend-app-1]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up. 
+[1A[1B[0G[?25l[+] Running 0/0
+ [33m⠋[0m Container todo-backend-mongo-1  Starting                                                                                                                                                      [34m0.1s [0m
+[?25h[1A[1A[0G[?25l[+] Running 0/1
+ [33m⠙[0m Container todo-backend-mongo-1  Starting                                                                                                                                                      [34m0.2s [0m
+[?25h[1A[1A[0G[?25l[34m[+] Running 1/1[0m
+ [32m✔[0m Container todo-backend-mongo-1  [32mStarted[0m                                                                                                                                                       [34m0.2s [0m
+[?25h[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker ps
+[?2004lCONTAINER ID   IMAGE               COMMAND                  CREATED         STATUS         PORTS                                           NAMES
+d769c0cd3e48   initialized-mongo   "docker-entrypoint.s…"   6 minutes ago   Up 2 seconds   0.0.0.0:3456->27017/tcp, [::]:3456->27017/tcp   todo-backend-mongo-1
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker images
+[?2004lREPOSITORY          TAG       IMAGE ID       CREATED        SIZE
+my-nginx            latest    97cfd49d40f0   12 hours ago   192MB
+express-server      latest    c96c9483c102   2 days ago     1.14GB
+initialized-mongo   latest    b79a3fccbd7f   3 days ago     855MB
+nginx               latest    7f553e8bbc89   13 days ago    192MB
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker ps
+[?2004lCONTAINER ID   IMAGE               COMMAND                  CREATED         STATUS          PORTS                                           NAMES
+d769c0cd3e48   initialized-mongo   "docker-entrypoint.s…"   6 minutes ago   Up 11 seconds   0.0.0.0:3456->27017/tcp, [::]:3456->27017/tcp   todo-backend-mongo-1
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker exec -it todo-backend-mongo-1 bash
+[?2004l[?2004hroot@d769c0cd3e48:/# mongoh sh -u root -p example
+[?2004l]0;mongosh mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000Current Mongosh Log ID:	670ee613418caf21e8fe6910
+Connecting to:		[1m[32mmongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.2[0m
+Using MongoDB:		8.0.1
+[1m[33mUsing Mongosh[0m:		2.3.2
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+[1G[0J [1G[1m[33m------[0m
+   [1m[33mThe server generated these startup warnings when booting[0m
+   2024-10-15T21:59:43.763+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2024-10-15T21:59:44.448+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2024-10-15T21:59:44.448+00:00: We suggest setting the contents of sysfsFile to 0.
+   2024-10-15T21:59:44.448+00:00: Your system has glibc support for rseq built in, which is not yet supported by tcmalloc-google and has critical performance implications. Please set the environment variable GLIBC_TUNABLES=glibc.pthread.rseq=0
+   2024-10-15T21:59:44.448+00:00: vm.max_map_count is too low
+   2024-10-15T21:59:44.449+00:00: We suggest setting swappiness to 0 or 1, as swapping can cause performance problems.
+[1m[33m------[0m
+
+[1G[0Jtest> [7Gshow dbs
+[1madmin[0m         100.00 KiB
+[1mconfig[0m         72.00 KiB
+[1mlocal[0m          72.00 KiB
+[1mthe_database[0m   72.00 KiB
+[1G[0Jtest> [7Guse the_database
+switched to db the_database
+[1G[0Jthe_database> [15Gshow collections
+[1mtodos[0m
+[1G[0Jthe_database> [15Gdb.todos.find({})
+[
+  {
+    _id: ObjectId([32m'670c1a86627d6f541085b380'[39m),
+    done: [33mtrue[39m,
+    __v: [33m0[39m,
+    text: [32m'Build a robot'[39m
+  },
+  {
+    _id: ObjectId([32m'670c1b56627d6f541085b386'[39m),
+    text: [32m'Buy sausage'[39m,
+    done: [33mfalse[39m,
+    __v: [33m0[39m
+  },
+  {
+    _id: ObjectId([32m'670c1b5b627d6f541085b388'[39m),
+    text: [32m'Buy bread'[39m,
+    done: [33mfalse[39m,
+    __v: [33m0[39m
+  },
+  {
+    _id: ObjectId([32m'670c1b66627d6f541085b38a'[39m),
+    text: [32m'Buy 5l bottle of water'[39m,
+    done: [33mfalse[39m,
+    __v: [33m0[39m
+  },
+  {
+    _id: ObjectId([32m'670c1b75627d6f541085b38c'[39m),
+    text: [32m'Visit KVR office to register residencce address'[39m,
+    done: [33mfalse[39m,
+    __v: [33m0[39m
+  }
+]
+[1G[0Jthe_database> [15Gdb.todos.insert()[1D[1G[0Jthe_database> db.todos.insert[44m([49m)[31G[1G[0Jthe_database> db.todos.insert[44m([49m{)[32G[1G[0Jthe_database> db.todos.insert[44m([49m{})[33G[1D[1G[0Jthe_database> db.todos.insert([44m{[49m})[32G[1G[0Jthe_database> db.todos.insert([44m{[49mt})[33G[1G[0Jthe_database> db.todos.insert([44m{[49mte})[34G[1G[0Jthe_database> db.todos.insert([44m{[49mtet})[35G[1G[0Jthe_database> db.todos.insert([44m{[49mtett})[36G[1G[0Jthe_database> db.todos.insert([44m{[49mtettx})[37G[1G[0Jthe_database> db.todos.insert([44m{[49mtett})[36G[1G[0Jthe_database> db.todos.insert([44m{[49mtet})[35G[1G[0Jthe_database> db.todos.insert([44m{[49mte})[34G[1G[0Jthe_database> db.todos.insert([44m{[49mtex})[35G[1G[0Jthe_database> db.todos.insert([44m{[49mtext})[36G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m:})[37G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: })[38G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [32m"})[39m[39G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m})[40G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m,})[41G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m, })[42G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m, d})[43G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m, [36mdo[39m})[44G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m, don})[45G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m, done})[46G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m, [33mdone[39m:})[47G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m, [33mdone[39m: })[48G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m, [33mdone[39m: f})[49G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m, [33mdone[39m: fa})[50G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m, [33mdone[39m: fal})[51G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m, [33mdone[39m: fals})[52G[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m""[39m, [33mdone[39m: [33mfalse[39m})[53G[1D[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [32m""[39m, [33mdone[39m: [33mfalse[39m})[52G[1D[1D[1D[1D[1D[1D[1D[1D[1D[1D[1D[1D[1D[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49m"[39m, [33mdone[39m: [33mfalse[39m})[39G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mI"[39m, [33mdone[39m: [33mfalse[39m})[40G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIn"[39m, [33mdone[39m: [33mfalse[39m})[41G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mInc"[39m, [33mdone[39m: [33mfalse[39m})[42G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncr"[39m, [33mdone[39m: [33mfalse[39m})[43G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncre"[39m, [33mdone[39m: [33mfalse[39m})[44G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrea"[39m, [33mdone[39m: [33mfalse[39m})[45G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncreas"[39m, [33mdone[39m: [33mfalse[39m})[46G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease"[39m, [33mdone[39m: [33mfalse[39m})[47G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease "[39m, [33mdone[39m: [33mfalse[39m})[48G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease t"[39m, [33mdone[39m: [33mfalse[39m})[49G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease th"[39m, [33mdone[39m: [33mfalse[39m})[50G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the"[39m, [33mdone[39m: [33mfalse[39m})[51G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the "[39m, [33mdone[39m: [33mfalse[39m})[52G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the n"[39m, [33mdone[39m: [33mfalse[39m})[53G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the nu"[39m, [33mdone[39m: [33mfalse[39m})[54G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the num"[39m, [33mdone[39m: [33mfalse[39m})[55G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the numb"[39m, [33mdone[39m: [33mfalse[39m})[56G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the numbe"[39m, [33mdone[39m: [33mfalse[39m})[57G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number"[39m, [33mdone[39m: [33mfalse[39m})[58G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number "[39m, [33mdone[39m: [33mfalse[39m})[59G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number o"[39m, [33mdone[39m: [33mfalse[39m})[60G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of"[39m, [33mdone[39m: [33mfalse[39m})[61G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of "[39m, [33mdone[39m: [33mfalse[39m})[62G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of t"[39m, [33mdone[39m: [33mfalse[39m})[63G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of to"[39m, [33mdone[39m: [33mfalse[39m})[64G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of too"[39m, [33mdone[39m: [33mfalse[39m})[65G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tool"[39m, [33mdone[39m: [33mfalse[39m})[66G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools"[39m, [33mdone[39m: [33mfalse[39m})[67G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools "[39m, [33mdone[39m: [33mfalse[39m})[68G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools i"[39m, [33mdone[39m: [33mfalse[39m})[69G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in"[39m, [33mdone[39m: [33mfalse[39m})[70G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in "[39m, [33mdone[39m: [33mfalse[39m})[71G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in m"[39m, [33mdone[39m: [33mfalse[39m})[72G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in my"[39m, [33mdone[39m: [33mfalse[39m})[73G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in my "[39m, [33mdone[39m: [33mfalse[39m})[74G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in my t"[39m, [33mdone[39m: [33mfalse[39m})[75G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in my to"[39m, [33mdone[39m: [33mfalse[39m})[76G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in my too"[39m, [33mdone[39m: [33mfalse[39m})[77G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in my tool"[39m, [33mdone[39m: [33mfalse[39m})[78G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in my tool "[39m, [33mdone[39m: [33mfalse[39m})[79G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in my tool b"[39m, [33mdone[39m: [33mfalse[39m})[80G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in my tool be"[39m, [33mdone[39m: [33mfalse[39m})[81G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in my tool bel"[39m, [33mdone[39m: [33mfalse[39m})[82G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in my tool belt"[39m, [33mdone[39m: [33mfalse[39m})[83G[1D[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [32m"Increase the number of tools in my tool belt"[39m, [33mdone[39m: [33mfalse[39m})[82G[1C[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [44m[32m"[49mIncrease the number of tools in my tool belt"[39m, [33mdone[39m: [33mfalse[39m})[83G[1C[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [32m"Increase the number of tools in my tool belt"[39m, [33mdone[39m: [33mfalse[39m})[84G[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1G[0Jthe_database> db.todos.insert([44m{[49m[33mtext[39m: [32m"Increase the number of tools in my tool belt"[39m, [33mdone[39m: [33mfalse[39m})[97G[1C[1G[0Jthe_database> db.todos.insert[44m([49m{[33mtext[39m: [32m"Increase the number of tools in my tool belt"[39m, [33mdone[39m: [33mfalse[39m})[98G[1C[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [32m"Increase the number of tools in my tool belt"[39m, [33mdone[39m: [33mfalse[39m})[99G
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: [33mtrue[39m,
+  insertedIds: { [32m'0'[39m: ObjectId([32m'670ee6bb418caf21e8fe6911'[39m) }
+}
+[1G[0Jthe_database> [15G[1G[0Jthe_database> db.todos.insert({[33mtext[39m: [32m"Increase the number of tools in my tool belt"[39m, [33mdone[39m: [33mfalse[39m})[99G[1G[0Jthe_database> db.todos.find({})[32G
+[
+  {
+    _id: ObjectId([32m'670c1a86627d6f541085b380'[39m),
+    done: [33mtrue[39m,
+    __v: [33m0[39m,
+    text: [32m'Build a robot'[39m
+  },
+  {
+    _id: ObjectId([32m'670c1b56627d6f541085b386'[39m),
+    text: [32m'Buy sausage'[39m,
+    done: [33mfalse[39m,
+    __v: [33m0[39m
+  },
+  {
+    _id: ObjectId([32m'670c1b5b627d6f541085b388'[39m),
+    text: [32m'Buy bread'[39m,
+    done: [33mfalse[39m,
+    __v: [33m0[39m
+  },
+  {
+    _id: ObjectId([32m'670c1b66627d6f541085b38a'[39m),
+    text: [32m'Buy 5l bottle of water'[39m,
+    done: [33mfalse[39m,
+    __v: [33m0[39m
+  },
+  {
+    _id: ObjectId([32m'670c1b75627d6f541085b38c'[39m),
+    text: [32m'Visit KVR office to register residencce address'[39m,
+    done: [33mfalse[39m,
+    __v: [33m0[39m
+  },
+  {
+    _id: ObjectId([32m'670ee6bb418caf21e8fe6911'[39m),
+    text: [32m'Increase the number of tools in my tool belt'[39m,
+    done: [33mfalse[39m
+  }
+]
+[1G[0Jthe_database> [15G[1G[0Jthe_database> db.todos.find({})[32G[1D[1G[0Jthe_database> db.todos.find[44m([49m{})[31G[1D[1G[0Jthe_database> db.todos.find([44m{[49m})[30G[1D[1G[0Jthe_database> db.todos.find({[44m}[49m)[29G[1D[1G[0Jthe_database> db.todos.find({}[44m)[49m[28G[1C[1G[0Jthe_database> db.todos.find({[44m}[49m)[29G[1C[1G[0Jthe_database> db.todos.find([44m{[49m})[30G[1G[0Jthe_database> db.todos.find([44m{[49md})[31G[1G[0Jthe_database> db.todos.find([44m{[49m})[30G[1G[0Jthe_database> db.todos.find([44m{[49mt})[31G[1G[0Jthe_database> db.todos.find([44m{[49mte})[32G[1G[0Jthe_database> db.todos.find([44m{[49mtex})[33G[1G[0Jthe_database> db.todos.find([44m{[49mtext})[34G[2C[1G[0Jthe_database> db.todos.find({text})[36G
+Uncaught [1m[31mReferenceError[0m: text is not defined
+[1G[0Jthe_database> [15G[1G[0Jthe_database> db.todos.find({text})[36G[1D[1G[0Jthe_database> db.todos.find[44m([49m{text})[35G[1D[1G[0Jthe_database> db.todos.find([44m{[49mtext})[34G[1D[1G[0Jthe_database> db.todos.find({text})[33G[1C[1G[0Jthe_database> db.todos.find([44m{[49mtext})[34G[1G[0Jthe_database> db.todos.find([44m{[49mtex})[33G[1G[0Jthe_database> db.todos.find([44m{[49mte})[32G[1G[0Jthe_database> db.todos.find([44m{[49mt})[31G[1G[0Jthe_database> db.todos.find([44m{[49m})[30G[1G[0Jthe_database> db.todos.find([44m{[49mf})[31G[1G[0Jthe_database> db.todos.find([44m{[49mfa})[32G[1G[0Jthe_database> db.todos.find([44m{[49mfal})[33G[1G[0Jthe_database> db.todos.find([44m{[49mfals})[34G[1G[0Jthe_database> db.todos.find([44m{[49m[33mfalse[39m})[35G[2C[1G[0Jthe_database> db.todos.find({[33mfalse[39m})[37G
+Uncaught:
+[1m[31mSyntaxError[0m: Unexpected keyword 'false'. (1:15)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mtodos[33m.[39mfind({[36mfalse[39m})[0m
+[0m [90m   |[39m                [31m[1m^[22m[39m[0m
+[0m [90m 2 |[39m[0m
+
+[1G[0Jthe_database> [15G[1G[0Jthe_database> db.todos.find({[33mfalse[39m})[37G[1D[1G[0Jthe_database> db.todos.find[44m([49m{[33mfalse[39m})[36G[1D[1G[0Jthe_database> db.todos.find([44m{[49m[33mfalse[39m})[35G[1G[0Jthe_database> db.todos.find([44m{[49mfals})[34G[1G[0Jthe_database> db.todos.find([44m{[49mfal})[33G[1G[0Jthe_database> db.todos.find([44m{[49mfa})[32G[1G[0Jthe_database> db.todos.find([44m{[49mf})[31G[1G[0Jthe_database> db.todos.find([44m{[49m})[30G[2C[1G[0Jthe_database> db.todos.find({})[32G
+[
+  {
+    _id: ObjectId([32m'670c1a86627d6f541085b380'[39m),
+    done: [33mtrue[39m,
+    __v: [33m0[39m,
+    text: [32m'Build a robot'[39m
+  },
+  {
+    _id: ObjectId([32m'670c1b56627d6f541085b386'[39m),
+    text: [32m'Buy sausage'[39m,
+    done: [33mfalse[39m,
+    __v: [33m0[39m
+  },
+  {
+    _id: ObjectId([32m'670c1b5b627d6f541085b388'[39m),
+    text: [32m'Buy bread'[39m,
+    done: [33mfalse[39m,
+    __v: [33m0[39m
+  },
+  {
+    _id: ObjectId([32m'670c1b66627d6f541085b38a'[39m),
+    text: [32m'Buy 5l bottle of water'[39m,
+    done: [33mfalse[39m,
+    __v: [33m0[39m
+  },
+  {
+    _id: ObjectId([32m'670c1b75627d6f541085b38c'[39m),
+    text: [32m'Visit KVR office to register residencce address'[39m,
+    done: [33mfalse[39m,
+    __v: [33m0[39m
+  },
+  {
+    _id: ObjectId([32m'670ee6bb418caf21e8fe6911'[39m),
+    text: [32m'Increase the number of tools in my tool belt'[39m,
+    done: [33mfalse[39m
+  }
+]
+[1G[0Jthe_database> [15G
+[?2004hroot@d769c0cd3e48:/# [?2004l
+exit
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker ps
+[?2004lCONTAINER ID   IMAGE               COMMAND                  CREATED          STATUS         PORTS                                           NAMES
+d769c0cd3e48   initialized-mongo   "docker-entrypoint.s…"   11 minutes ago   Up 5 minutes   0.0.0.0:3456->27017/tcp, [::]:3456->27017/tcp   todo-backend-mongo-1
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker ps -a
+[?2004lCONTAINER ID   IMAGE               COMMAND                  CREATED          STATUS                      PORTS                                           NAMES
+d769c0cd3e48   initialized-mongo   "docker-entrypoint.s…"   11 minutes ago   Up 5 minutes                0.0.0.0:3456->27017/tcp, [::]:3456->27017/tcp   todo-backend-mongo-1
+85458ca82110   nginx               "/docker-entrypoint.…"   11 hours ago     Exited (137) 11 hours ago                                                   quizzical_blackwell
+40c2145af1d0   express-server      "docker-entrypoint.s…"   2 days ago       Exited (137) 2 days ago                                                     todo-backend-app-1
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker start todo-backend-app-1 
+[?2004ltodo-backend-app-1
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker k[Kps
+[?2004l
+CONTAINER ID   IMAGE               COMMAND                  CREATED          STATUS          PORTS                                           NAMES
+d769c0cd3e48   initialized-mongo   "docker-entrypoint.s…"   12 minutes ago   Up 5 minutes    0.0.0.0:3456->27017/tcp, [::]:3456->27017/tcp   todo-backend-mongo-1
+40c2145af1d0   express-server      "docker-entrypoint.s…"   2 days ago       Up 10 seconds   0.0.0.0:3000->3000/tcp, :::3000->3000/tcp       todo-backend-app-1
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ 
+[?2004l[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker kill 40
+[?2004l40
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docket [K[Kr start todo-backend-app-1 
+[?2004ltodo-backend-app-1
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker exec -it d[Ktodo-backend-app-1 bash
+[?2004l[?2004h]0;node@40c2145af1d0: /usr/src/appnode@40c2145af1d0:/usr/src/app$ mongosh  
+[?2004lbash: mongo: command not found
+[?2004h]0;node@40c2145af1d0: /usr/src/appnode@40c2145af1d0:/usr/src/app$ mongosh [7mmongodb://the_username:the_password@mongo:27017/the_database[27mmongodb://the_username:the_password@mongo:27017/the_database
+[?2004lbash: mongosh: command not found
+[?2004h]0;node@40c2145af1d0: /usr/src/appnode@40c2145af1d0:/usr/src/app$ [K[?2004l
+exit
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ curl [7mhttp://localhost:3000/todos[27mhttp://localhost:3000/todos
+[?2004l[{"_id":"670c1a86627d6f541085b380","done":true,"__v":0,"text":"Build a robot"},{"_id":"670c1b56627d6f541085b386","text":"Buy sausage","done":false,"__v":0},{"_id":"670c1b5b627d6f541085b388","text":"Buy bread","done":false,"__v":0},{"_id":"670c1b66627d6f541085b38a","text":"Buy 5l bottle of water","done":false,"__v":0},{"_id":"670c1b75627d6f541085b38c","text":"Visit KVR office to register residencce address","done":false,"__v":0},{"_id":"670ee6bb418caf21e8fe6911","text":"Increase the number of tools in my tool belt","done":false}][?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ ^C[?2004l[?2004h[?2004l
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docekr [K[K[K[Kker ps 
+[?2004lCONTAINER ID   IMAGE               COMMAND                  CREATED          STATUS              PORTS                                           NAMES
+d769c0cd3e48   initialized-mongo   "docker-entrypoint.s…"   14 minutes ago   Up 8 minutes        0.0.0.0:3456->27017/tcp, [::]:3456->27017/tcp   todo-backend-mongo-1
+40c2145af1d0   express-server      "docker-entrypoint.s…"   2 days ago       Up About a minute   0.0.0.0:3000->3000/tcp, :::3000->3000/tcp       todo-backend-app-1
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker ps[K[Kkill i[Ktodo-backend-mongo-1 
+[?2004ltodo-backend-mongo-1
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ doc[K[K[Kdocker kill todo-backend-mongo-1 ps [Kcurl http://localhost:3000/todos
+[?2004l^C
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker ps
+[?2004ldoCONTAINER ID   IMAGE            COMMAND                  CREATED      STATUS         PORTS                                       NAMES
+40c2145af1d0   express-server   "docker-entrypoint.s…"   2 days ago   Up 2 minutes   0.0.0.0:3000->3000/tcp, :::3000->3000/tcp   todo-backend-app-1
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ do[K[Kdcoker [K[K[K[K[K[Kocker kill 40
+[?2004lError response from daemon: cannot kill container: 40: container 40c2145af1d029274dae5a964465c8bb8a714d3d17e9524e839e8b98f63cb84e is not running
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker kill 40[K[K[K[K[K[K[Kps
+[?2004lCONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker ps
+[?2004lCONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ docker ps -a
+[?2004lCONTAINER ID   IMAGE               COMMAND                  CREATED          STATUS                        PORTS     NAMES
+d769c0cd3e48   initialized-mongo   "docker-entrypoint.s…"   15 minutes ago   Exited (137) 53 seconds ago             todo-backend-mongo-1
+85458ca82110   nginx               "/docker-entrypoint.…"   11 hours ago     Exited (137) 11 hours ago               quizzical_blackwell
+40c2145af1d0   express-server      "docker-entrypoint.s…"   2 days ago       Exited (1) 15 seconds ago               todo-backend-app-1
+[?2004h]0;donfring@Home: ~/fullstack/part12/todo-app/todo-backend[01;32mdonfring@Home[00m:[01;34m~/fullstack/part12/todo-app/todo-backend[00m$ [?2004l
+exit
+
+Script done on 2024-10-16 00:09:13+02:00 [COMMAND_EXIT_CODE="0"]
