@@ -1,3 +1,6 @@
+# Redis data
+redis_data/
+
 # Logs
 logs
 *.log
