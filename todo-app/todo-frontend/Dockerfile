@@ -1,3 +1,15 @@
+# Stage 1: Run tests
+FROM node:20 AS test-stage
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+RUN npm ci
+
+RUN npm test
+
+# Stage 2: Build the Application
 FROM node:20 AS build-stage
 
 WORKDIR /usr/src/app
